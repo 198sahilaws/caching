@@ -8,7 +8,7 @@ _version = 'Version 1.0'
 class Serialization(object):
     def __init__(self, appname):
         self.appname = appname
-        self.cache_dir = self.cache()
+        self.cache_dir = self.create_cache()
 
     def create_cache(self):
         """
