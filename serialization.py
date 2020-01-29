@@ -63,3 +63,14 @@ class Serialization(object):
         if os.path.exists(file):
             os.remove(file)
         self.pickle_dump(data_object, cache_name)
+
+    def delete_cache(self, cache_name):
+        """
+        Method to delete  binary serialized file.
+        :param cache_name: file name
+        :return:
+        """
+        file = '{}/{}'.format(self.cache_dir, cache_name)
+        if os.path.exists(file):
+            os.remove(file)
+        return
