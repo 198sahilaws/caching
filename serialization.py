@@ -10,7 +10,7 @@ class Serialization(object):
         self.appname = appname
         self.cache_dir = self.cache()
 
-    def cache(self):
+    def create_cache(self):
         """
         Method to create cache directory
         :return:
@@ -52,3 +52,14 @@ class Serialization(object):
             except pickle.UnpicklingError as e:
                 print(e)
         return
+
+    def update_cache(self, data_object, cache_name):
+        """
+        Method to update existing binary serialized file.
+        :param cache_name: file name
+        :return:
+        """
+        file = '{}/{}'.format(self.cache_dir, cache_name)
+        if os.path.exists(file):
+            os.remove(file)
+        self.pickle_dump(data_object, cache_name)
