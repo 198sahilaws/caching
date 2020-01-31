@@ -1,9 +1,8 @@
 import pickle
 import appdirs
 import os
-
 _version = 'Version 1.0'
-
+_author = 'Sergio Pereira'
 
 class Serialization(object):
     def __init__(self, appname):
