@@ -7,9 +7,9 @@ python caching and serialization
    pip install pickle
 
 ### Usage
-from  serialization import Serialization
+from  cachehelper import CacheHelper
 
-a=Serialization('appname')
+a=CacheHelper('appname')
 
 - Serialization class will create a caching directory: example: /Users/user/Library/Caches/appname
 

@@ -1,10 +1,12 @@
 import pickle
 import appdirs
 import os
+
 _version = 'Version 1.0'
 _author = 'Sergio Pereira'
 
-class Serialization(object):
+
+class CacheHelper(object):
     def __init__(self, appname):
         self.appname = appname
         self.cache_dir = self.create_cache()
@@ -37,6 +39,7 @@ class Serialization(object):
             print("data object was dumped into {}".format(file))
         except pickle.PicklingError as e:
             print(e)
+        return file
 
     def pickle_load(self, cache_name):
         """
