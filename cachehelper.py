@@ -32,7 +32,7 @@ class CacheHelper(object):
         :param cache_name: file name
         :return:
         """
-        file = '{}/{}'.format(self.cache_dir, cache_name)
+        file = os.path.join(self.cache_dir, cache_name)
         try:
             with open(file, "wb") as output_file:
                 pickle.dump(data_object, output_file)
