@@ -11,7 +11,7 @@ from  cachehelper import CacheHelper
 
 a=CacheHelper('appname')
 
-- Serialization class will create a caching directory: example: /Users/user/Library/Caches/appname
+- CacheHelper class will create a caching directory: example: /Users/user/Library/Caches/appname
 
 d={2:3}
 a.pickle_dump(d,'dictionary_example')
