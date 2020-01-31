@@ -30,8 +30,3 @@ class TestSerialization(unittest.TestCase):
         load_dic = a.pickle_load(cache_name="device_info")
         self.assertEqual(new_device_info, load_dic)
 
-    def test_remove_cache(self):
-        a = Serialization('appname')
-        a.delete_cache(cache_name="device_info")
-        file = '{}/{}'.format(cache_dir, "device_info")
-        self.assertFalse(path.exists(file))
