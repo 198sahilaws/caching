@@ -15,15 +15,14 @@ a=CacheHelper('appname')
 CacheHelper class will create a caching directory: example: /Users/user/Library/Caches/appname
 ```
 d={2:3}
-a.pickle_dump(d,'dictionary_example')
+a.cache_dump(d,'dictionary_example')
 ```
-pickle_dump method will serialize a given object and will save in caching folder with given name
+cache_dump method will serialize a given object and will save in json format in caching folder with  the given name
  
  /Users/user/Library/Caches/appname/dictionary_example
 
 ```
-d=a.pickle_load('dictionary_example')
+d=a.cache_load('dictionary_example')
 ```
-pickle_load method will load binary serialized file into object
-
+cache_load method will load json file file into object
 
