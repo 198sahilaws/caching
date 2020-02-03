@@ -15,18 +15,18 @@ new_device_info = {
 
 class TestSerialization(unittest.TestCase):
 
-    def test_pickle_dump(self):
+    def test_cache_dump(self):
         a = CacheHelper(appname='appname')
-        file = a.pickle_dump(data_object=device_info, cache_name="device_info")
+        file = a.cache_dump(data_object=device_info, cache_name="device_info")
         self.assertTrue(path.exists(file))
 
-    def test_pickle_loads(self):
+    def test_cache_loads(self):
         a = CacheHelper(appname='appname')
-        load_dic = a.pickle_load(cache_name="device_info")
+        load_dic = a.cache_load(cache_name="device_info")
         self.assertEqual(device_info, load_dic)
 
     def test_update_cache(self):
         a = CacheHelper(appname='appname')
         a.update_cache(data_object=new_device_info, cache_name="device_info")
-        load_dic = a.pickle_load(cache_name="device_info")
+        load_dic = a.cache_load(cache_name="device_info")
         self.assertEqual(new_device_info, load_dic)

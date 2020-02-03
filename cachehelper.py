@@ -1,4 +1,4 @@
-import pickle
+import json
 import appdirs
 import os
 
@@ -25,23 +25,24 @@ class CacheHelper(object):
             print("Caching directory {} already exists".format(cache_dir))
         return cache_dir
 
-    def pickle_dump(self, data_object, cache_name):
+    def cache_dump(self, data_object, cache_name, indent=None):
         """
-        Method to serialize object into binary file.
-        :param data_object: dictionary, array, etc
+        Method serialize to  object as a JSON formatted stream. More information: https://docs.python.org/3/library/json.html#py-to-json-table
+        :param data_object: dictionary, list, tuple, str, into, float boolean
         :param cache_name: file name
+        :param indent: integer to pretty print JSON formart
         :return:
         """
         file = os.path.join(self.cache_dir, cache_name)
         try:
-            with open(file, "wb") as output_file:
-                pickle.dump(data_object, output_file)
+            with open(file, "w") as output_file:
+                json.dump(data_object, output_file, indent)
             print("data object was dumped into {}".format(file))
-        except pickle.PicklingError as e:
+        except json.JSONDecodeError as e:
             print(e)
         return file
 
-    def pickle_load(self, cache_name):
+    def cache_load(self, cache_name):
         """
         Method to load serialized object from a binary file.
         :param cache_name: file name
@@ -50,8 +51,8 @@ class CacheHelper(object):
         file = '{}/{}'.format(self.cache_dir, cache_name)
         with open(file, "rb") as input_file:
             try:
-                return pickle.load(input_file)
-            except pickle.UnpicklingError as e:
+                return json.load(input_file)
+            except ValueError as e:
                 print(e)
         return
 
@@ -64,7 +65,7 @@ class CacheHelper(object):
         file = '{}/{}'.format(self.cache_dir, cache_name)
         if os.path.exists(file):
             os.remove(file)
-        self.pickle_dump(data_object, cache_name)
+        self.cache_dump(data_object, cache_name)
 
     def delete_cache(self, cache_name):
         """
