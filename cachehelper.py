@@ -2,8 +2,9 @@ import json
 import appdirs
 import os
 import csv
+import pandas as pd
 
-_version = 'Version 1.1'
+_version = 'Version 1.2'
 _author = 'Sergio Pereira'
 
 
@@ -106,3 +107,13 @@ class CacheHelper(object):
             csvwriter.writerows(rows)
         print("csv was generated:  {}".format(file))
         return
+
+    def excel_dump(self,object,filename):
+        """
+        Method to dump into a excel file
+        :param fields: obeject structure. Either dictionary or list
+        :param file_name: file name
+        :return:  None
+        """
+        df = pd.DataFrame(data=object, index=[0])
+        df.to_excel(f'{filename}.xlsx')
