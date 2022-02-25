@@ -93,7 +93,7 @@ class CacheHelper(object):
 
     def csv_dump(self, fields, rows, file_name):
         """
-        MEthos to dump into a csv file
+        Method to dump into a csv file
         :param fields: list of field names
         :param rows:  list of rows
         :param file_name: file name
