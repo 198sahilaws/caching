@@ -2,7 +2,7 @@ import json
 import appdirs
 import os
 import csv
-import pandas as pd
+import xlsxwriter
 
 _version = 'Version 1.2'
 _author = 'Sergio Pereira'
@@ -108,12 +108,25 @@ class CacheHelper(object):
         print("csv was generated:  {}".format(file))
         return
 
-    def excel_dump(self,object,filename):
+    def excel_dump(self,filename, fields, rows,sheet_name='Data' ):
         """
         Method to dump into a excel file
-        :param fields: obeject structure. Either dictionary or list
-        :param file_name: file name
+        :param fields: Fields names
+        :param row: list of rows. Each row is a list
+        :param filename: file name
         :return:  None
         """
-        df = pd.DataFrame(data=object, index=[0])
-        df.to_excel(f'{filename}.xlsx')
+        workbook = xlsxwriter.Workbook('{filename}.xlsx')
+        ws = workbook.add_worksheet('sheet_name')
+        ws.autofilter('A1:G1')
+        row = 0
+        column = 0
+        for tag in fields:
+            ws.write(row, column, tag)
+            column += 1
+        row = 1
+        for item in list:
+            for col_num, data in enumerate(item):
+                ws.write(row, col_num, data)
+            row += 1
+        workbook.close()    

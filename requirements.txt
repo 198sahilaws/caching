@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-appdirs
-=======
 appdirs
 pandas
-
->>>>>>> refs/remotes/origin/master
+xlsxwriter
