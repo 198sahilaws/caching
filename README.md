@@ -4,8 +4,9 @@ CacheHelper is a python caching and serialization method that allows to dump/rea
 for caching purposes.
 
 ### Installation Notes / Prerequisites
-   pip install appdirs
-   pip install pickle
+```
+pip install -r requirements.txt
+```
 
 ### Usage
 from  cachehelper import CacheHelper
