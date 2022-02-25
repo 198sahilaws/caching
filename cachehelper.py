@@ -1,8 +1,9 @@
 import json
 import appdirs
 import os
+import csv
 
-_version = 'Version 1.0'
+_version = 'Version 1.1'
 _author = 'Sergio Pereira'
 
 
@@ -76,4 +77,32 @@ class CacheHelper(object):
         file = '{}/{}'.format(self.cache_dir, cache_name)
         if os.path.exists(file):
             os.remove(file)
+        return
+
+    def text_dump(self, data, file_name, ):
+        """
+        Method to dump text into a file
+        :param data: string
+        :param file_name: file name
+        :return: None
+        """
+        file = os.path.join(self.cache_dir, file_name)
+        with open(file, "w") as output_file:
+            output_file.write(data)
+        return
+
+    def csv_dump(self, fields, rows, file_name):
+        """
+        MEthos to dump into a csv file
+        :param fields: list of field names
+        :param rows:  list of rows
+        :param file_name: file name
+        :return:  None
+        """
+        file = os.path.join(self.cache_dir, file_name)
+        with open(file, 'w') as csvfile:
+            csvwriter = csv.writer(csvfile)
+            csvwriter.writerow(fields)
+            csvwriter.writerows(rows)
+        print("csv was generated:  {}".format(file))
         return
