@@ -3,8 +3,9 @@ import appdirs
 import os
 import csv
 import xlsxwriter
+import pandas as pd 
 
-_version = 'Version 1.2'
+_version = 'Version 1.2.1'
 _author = 'Sergio Pereira'
 
 
@@ -130,3 +131,48 @@ class CacheHelper(object):
                 ws.write(row, col_num, data)
             row += 1
         workbook.close()    
+
+
+    def generate_excel(self, dict_to_write,file_name):
+
+        """
+        Method converts the dict of base domains to list
+        and write the list of entries into an Excel
+        spreadsheet using Pandas module.
+
+        Note: Pandas is used to leverage extended 
+        functionality offered by pandas.  
+        
+        Handles following data structure:
+
+        {key: [{},{},{}]}
+        """
+
+        print_list = []
+
+        for k,v in dict_to_write.items():
+
+           for j in v:
+               print_list.append(j)
+
+        file = os.path.join(self.cache_dir, file_name)
+
+        df1 = pd.DataFrame(print_list)
+        df1.to_excel(file)
+
+ 
+    def generate_excel_list(self, list_to_write,file_name):
+
+
+        """
+        Method write list of entries to an Excel
+        spreadsheet using Pandas module.
+
+        Note: Pandas is used to leverage extended 
+        functionality offered by pandas.  
+        """
+
+        file = os.path.join(self.cache_dir, file_name)
+
+        df2 = pd.DataFrame(list_to_write)
+        df2.to_excel(file)
